@@ -32,6 +32,7 @@ lang = dict(sorted(lang2.items(), key=itemgetter(1), reverse=True)[:15])
 # let's print that - xkcd style
 plt.xkcd()
 
+# removing the right and top spines and shifting to the right to unclip the labels
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
 ax.spines['right'].set_color('none')
