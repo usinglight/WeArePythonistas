@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
 # # -*- coding: utf-8 -*-
 
 """WeArePythonistas - Part 0: What do we want to see"""
@@ -14,7 +14,7 @@ wb = load_workbook(file)
 ws=wb[wsName]
 
 # read first 700 values from column 20 (languages) into list
-# not very pythonic, but here you also see the stripping and lowercasing to
+# not very pythonic, but here you also see the stripping and uppercasing to
 # get through the masses of different ways to write Javascript
 interests=list()
 for i in range(2, 701):
@@ -43,5 +43,5 @@ plt.title("WHAT WE WANT")
 plt.rcParams.update({'figure.autolayout': True})
 plt.barh(range(len(lang)),list(lang.values()), align='center')
 plt.yticks(range(len(lang)), list(lang.keys()))
-
-plt.show()
+# plt.show()
+fig.savefig('report.png')
