@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 file='/Users/stefansteinbauer/Documents/onmachinedata/report.xlsx'
 wsName='Attendees'
 wb = load_workbook(file)
-ws=wb[wsName]
+ws = wb[wsName]
 
 # column 22 for languages, 31 for countries
 colVal=22
@@ -29,7 +29,6 @@ for i in range(2, rowmax):
     cellval = cellval.upper()
 # and here I look at people filling in their languageS
     interests.extend(cellval.split(","))
-
 #counting the languages while removing the duplicates
 lang2={x:interests.count(x) for x in interests}
 # Getting the Top 10 or more
@@ -44,14 +43,12 @@ with plt.xkcd():
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
     plt.gcf().subplots_adjust(left=0.3)
-
     plt.title("WHAT WE WANT")
     plt.rcParams.update({'figure.autolayout': True})
     plt.barh(range(len(lang)),list(lang.values()),align='center')
     # display values next to bars
-    for i, v in enumerate(list(lang.values())):
-        ax.text(v + 4, i-.35, str(v), fontweight='bold')
-
+    #for i, v in enumerate(list(lang.values())):
+    #    ax.text(v + 4, i-.35, str(v), fontweight='bold')
     plt.yticks(range(len(lang)),list(lang.keys()))
     # plt.show()
     fig.savefig('report'+str(colVal)+'.png')
