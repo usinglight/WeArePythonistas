@@ -14,7 +14,7 @@ wb = load_workbook(file)
 ws = wb[wsName]
 
 # column 22 for languages, 31 for countries
-colVal=22
+colVal=64
 # when you have multiple operations you might want to have only a subset, like the
 # first 1000 rows
 # rowmax=1000
@@ -32,8 +32,8 @@ for i in range(2, rowmax):
 #counting the languages while removing the duplicates
 lang2={x:interests.count(x) for x in interests}
 # Getting the Top 10 or more
-lang = dict(sorted(lang2.items(), key=itemgetter(1), reverse=True)[:10])
-
+lang = dict(sorted(lang2.items(), key=itemgetter(1), reverse=True)[:30])
+print(lang)
 
 # let's print that - xkcd style
 with plt.xkcd():
@@ -43,12 +43,12 @@ with plt.xkcd():
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
     plt.gcf().subplots_adjust(left=0.3)
-    plt.title("WHAT WE WANT")
+    plt.title("WHAT WE SPEAK")
     plt.rcParams.update({'figure.autolayout': True})
     plt.barh(range(len(lang)),list(lang.values()),align='center')
     # display values next to bars
-    #for i, v in enumerate(list(lang.values())):
-    #    ax.text(v + 4, i-.35, str(v), fontweight='bold')
+    for i, v in enumerate(list(lang.values())):
+        ax.text(v + 4, i-.35, str(int(v*100/rowmax)), fontweight='bold')
     plt.yticks(range(len(lang)),list(lang.keys()))
     # plt.show()
     fig.savefig('report'+str(colVal)+'.png')
